@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@dicarvalho.prof | Links</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        :root {
+            --mars-rubi: #c20000;
+            --mars-bg: #000000;
+            --mars-card: #0a0a0a;
+            --mars-border: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--mars-bg);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Efeito de carregamento suave para a foto (evita efeito "Windows XP") */
+        .profile-container {
+            width: 110px;
+            height: 110px;
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--mars-rubi);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-color: #111; /* Cor de fundo enquanto carrega */
+        }
+
+        .profile-pic.loaded {
+            opacity: 1;
+        }
+
+        /* Design dos Cards */
+        .link-card {
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(145deg, #0f0f0f, #050505);
+            border: 1px solid var(--mars-border);
+            border-radius: 16px;
+            padding: 18px 24px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card:hover {
+            border-color: var(--mars-rubi);
+            transform: scale(1.02);
+            background: #0f0f0f;
+            box-shadow: 0 0 20px rgba(194, 0, 0, 0.15);
+        }
+
+        .link-card i {
+            font-size: 1.25rem;
+            color: var(--mars-rubi);
+            margin-right: 16px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .link-card span {
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .username {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tagline {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+        }
+
+        /* Footer sutil */
+        .footer-logo {
+            margin-top: auto;
+            padding-top: 40px;
+            font-size: 0.7rem;
+            color: #333;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Perfil -->
+    <div class="profile-container">
+        <img 
+            src="https://images2.imgbox.com/eb/a4/pvbCI6HQ_o.jpg" 
+            alt="Diandra Carvalho" 
+            class="profile-pic" 
+            id="profileImg"
+            onload="this.classList.add('loaded')"
+        >
+    </div>
+    
+    <h1 class="username">@dicarvalho<span style="color:var(--mars-rubi)">.</span>prof</h1>
+    <p class="tagline">Education of the Future</p>
+
+    <!-- Links -->
+    
+    <!-- Falar com a Di -->
+    <a href="#" class="link-card">
+        <i class="fab fa-whatsapp"></i>
+        <span>Falar com a Di</span>
+    </a>
+
+    <!-- Biblioteca -->
+    <a href="#" class="link-card">
+        <i class="fas fa-book-open"></i>
+        <span>Biblioteca</span>
+    </a>
+
+    <!-- Acessar área do aluno -->
+    <a href="#" class="link-card">
+        <i class="fas fa-user-graduate"></i>
+        <span>Acessar área do aluno</span>
+    </a>
+
+    <!-- Language Lab -->
+    <a href="#" class="link-card">
+        <i class="fas fa-flask"></i>
+        <span>Language Lab</span>
+    </a>
+
+    <!-- Conhecer método -->
+    <a href="#" class="link-card">
+        <i class="fas fa-dna"></i>
+        <span>Conhecer método</span>
+    </a>
+
+    <!-- Social Icons Small -->
+    <div class="flex gap-5 mt-8">
+        <a href="#" class="text-gray-600 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-gray-600 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="text-gray-600 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <div class="footer-logo">
+        Mars Education
+    </div>
+
+    <script>
+        // Fallback para garantir que a imagem apareça caso o onload falhe ou já tenha carregado do cache
+        window.addEventListener('load', function() {
+            const img = document.getElementById('profileImg');
+            if (img.complete) {
+                img.classList.add('loaded');
+            }
+        });
+    </script>
+</body>
+</html>
