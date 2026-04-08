@@ -14,6 +14,8 @@
             --mars-bg: #000000;
             --mars-card: #0a0a0a;
             --mars-border: #1a1a1a;
+            --mars-glow: rgba(194, 0, 0, 0.3);
+            --mars-glow-hover: rgba(194, 0, 0, 0.6);
         }
 
         body {
@@ -27,7 +29,7 @@
             padding: 40px 20px;
         }
 
-        /* Efeito de carregamento suave para a foto (evita efeito "Windows XP") */
+        /* Perfil */
         .profile-container {
             width: 110px;
             height: 110px;
@@ -43,14 +45,51 @@
             border: 2px solid var(--mars-rubi);
             opacity: 0;
             transition: opacity 1s ease-in-out;
-            background-color: #111; /* Cor de fundo enquanto carrega */
+            background-color: #111;
         }
 
         .profile-pic.loaded {
             opacity: 1;
         }
 
-        /* Design dos Cards */
+        .username {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        /* Efeito Typewriter */
+        .tagline-container {
+            height: 20px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tagline {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 14px; /* Ajustado para alinhar com o texto */
+            background-color: var(--mars-rubi);
+            margin-left: 4px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Design dos Cards com Glow */
         .link-card {
             width: 100%;
             max-width: 400px;
@@ -58,21 +97,24 @@
             border: 1px solid var(--mars-border);
             border-radius: 16px;
             padding: 18px 24px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             text-decoration: none;
             color: #fff;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             overflow: hidden;
+            /* Glow Sutil Inicial */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px var(--mars-glow);
         }
 
         .link-card:hover {
             border-color: var(--mars-rubi);
-            transform: scale(1.02);
+            transform: translateY(-2px);
             background: #0f0f0f;
-            box-shadow: 0 0 20px rgba(194, 0, 0, 0.15);
+            /* Glow mais intenso no hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 20px var(--mars-glow-hover);
         }
 
         .link-card i {
@@ -89,21 +131,6 @@
             letter-spacing: 0.5px;
         }
 
-        .username {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .tagline {
-            font-size: 0.75rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 32px;
-        }
-
-        /* Footer sutil */
         .footer-logo {
             margin-top: auto;
             padding-top: 40px;
@@ -128,68 +155,80 @@
     </div>
     
     <h1 class="username">@dicarvalho<span style="color:var(--mars-rubi)">.</span>prof</h1>
-    <p class="tagline">Aprenda com ciência de verdade</p>
+    
+    <!-- Container da animação corrigido -->
+    <div class="tagline-container">
+        <p class="tagline" id="typewriter"></p><span class="cursor" id="cursor"></span>
+    </div>
 
     <!-- Links -->
-    
-    <!-- Falar com a Di -->
     <a href="https://wa.me/5516993272278" class="link-card">
         <i class="fab fa-whatsapp"></i>
         <span>Falar com a Di</span>
     </a>
 
-    <!-- Biblioteca -->
     <a href="https://sites.google.com/view/profdiandradeingles/biblioteca" class="link-card">
         <i class="fas fa-book-open"></i>
         <span>Biblioteca</span>
     </a>
 
-    <!-- Acessar área do aluno -->
     <a href="https://sites.google.com/view/profdiandradeingles/sou-aluno" class="link-card">
         <i class="fas fa-user-graduate"></i>
         <span>Acessar área do aluno</span>
     </a>
 
-    <!-- Language Lab -->
     <a href="https://sites.google.com/view/languagelabbr/in%C3%ADcio" class="link-card">
         <i class="fas fa-flask"></i>
         <span>Language Lab</span>
     </a>
-    <!-- perfil cognitivo -->
-<a href="https://sites.google.com/view/profdiandradeingles/teste-seu-estilo-de-aprendizagem" class="link-card">
-    <i class="fa-solid fa-brain"></i>
-    <span>Descobrir perfil de aprendizagem</span>
-</a>
-<!-- Nível de Inglês -->
-<a href="https://sites.google.com/view/profdiandradeingles/teste-seu-n%C3%ADvel-de-ingl%C3%AAs" class="link-card">
-    <i class="fa-solid fa-lightbulb"></i>
-    <span>Testar nível de Inglês</span>
-</a>
-    <!-- Conhecer método -->
+
+    <a href="https://sites.google.com/view/profdiandradeingles/teste-seu-estilo-de-aprendizagem" class="link-card">
+        <i class="fa-solid fa-brain"></i>
+        <span>Descobrir perfil de aprendizagem</span>
+    </a>
+
+    <a href="https://sites.google.com/view/profdiandradeingles/teste-seu-n%C3%ADvel-de-ingl%C3%AAs" class="link-card">
+        <i class="fa-solid fa-lightbulb"></i>
+        <span>Testar nível de Inglês</span>
+    </a>
+
     <a href="https://sites.google.com/view/profdiandradeingles/m%C3%A9todo" class="link-card">
         <i class="fas fa-dna"></i>
         <span>Conhecer método</span>
     </a>
 
-    <!-- Social Icons Small -->
+    <!-- Social Icons -->
     <div class="flex gap-5 mt-8">
         <a href="https://www.instagram.com/dicarvalho.prof/" class="text-gray-600 hover:text-white transition"><i class="fab fa-instagram"></i></a>
         <a href="https://www.youtube.com/@Diandraprof" class="text-gray-600 hover:text-white transition"><i class="fab fa-youtube"></i></a>
-           </div>
-    
+    </div>
 
     <div class="footer-logo">
         Education of the Future
     </div>
 
     <script>
-        // Fallback para garantir que a imagem apareça caso o onload falhe ou já tenha carregado do cache
-        window.addEventListener('load', function() {
+        // Lógica da Animação Typewriter
+        const text = "Aprenda com ciência de verdade";
+        const delay = 100;
+        const element = document.getElementById("typewriter");
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, delay);
+            }
+        }
+
+        window.onload = function() {
             const img = document.getElementById('profileImg');
             if (img.complete) {
                 img.classList.add('loaded');
             }
-        });
+            typeWriter();
+        };
     </script>
 </body>
 </html>
