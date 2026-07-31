@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
     <title>@dicarvalho.prof</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -21,6 +22,56 @@
             --mars-glow-hover: rgba(194, 0, 0, 0.5);
         }
 
+        /* ── BACKGROUND SUPER LIMPO ──────────────────────────────────── */
+        body {
+            background: #0a0a0a;
+            position: relative;
+        }
+
+        /* ── GRADE FINA UNIFORME ────────────────────────────────────── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 29px,
+                    rgba(194, 0, 0, 0.048) 29px,
+                    rgba(194, 0, 0, 0.062) 30px
+                ),
+                repeating-linear-gradient(
+                    180deg,
+                    transparent,
+                    transparent 29px,
+                    rgba(194, 0, 0, 0.048) 29px,
+                    rgba(194, 0, 0, 0.048) 30px
+                );
+            background-size: 30px 30px;
+        }
+
+        /* ── ESTRELAS ────────────────────────────────────────────────── */
+        #star-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        /* ── CONTEÚDO ────────────────────────────────────────────────── */
+        .main-header,
+        #library-container,
+        .lib-footer {
+            position: relative;
+            z-index: 2;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--mars-bg);
@@ -33,13 +84,59 @@
             overflow-x: hidden;
         }
 
-        /* Perfil */
+        /* ===== EFEITO DA FOTO COM DISCO GIRANDO ===== */
         .profile-container {
             width: 110px;
             height: 110px;
             position: relative;
             margin-bottom: 16px;
             opacity: 0;
+        }
+
+        /* Disco giratório (camada externa) */
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            inset: -1px;      /* Distancia entre disco e borda */
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--mars-rubi),
+                transparent 40%,
+                var(--mars-rubi) 60%,
+                transparent 80%,
+                var(--mars-rubi)
+            );
+            animation: spin 8s linear infinite;
+            z-index: 0;
+        }
+
+        /* Anel pulsante (camada mais externa) */
+        .profile-container::after {
+            content: '';
+            position: absolute;
+            inset: -12px;             /* 12px para fora da foto */
+            border-radius: 50%;
+            border: 1px solid rgba(194, 0, 0, 0.15);
+            animation: pulse-ring 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        /* Animações */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.08);
+                opacity: 0.15;
+            }
         }
 
         .profile-pic {
@@ -51,6 +148,8 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
             background-color: #111;
+            position: relative;
+            z-index: 1;  /* Fica sobre os anéis */
         }
 
         .profile-pic.loaded {
@@ -187,11 +286,71 @@
             letter-spacing: 3px;
             text-transform: uppercase;
         }
+
+        /* ── SCROLLBAR ────────────────────────────────────────────────── */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0c0c0c;
+            border-radius: 10px;
+            border: 1px solid #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #c20000, #8b0000);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #e00000, #c20000);
+            cursor: pointer;
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background: linear-gradient(135deg, #ff1a1a, #e00000);
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: #0c0c0c;
+            border: 1px solid #1a1a1a;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #c20000 #0c0c0c;
+        }
+
+        @media (max-width: 768px) {
+            ::-webkit-scrollbar {
+                width: 0;
+                background: transparent;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: transparent;
+            }
+            
+            * {
+                scrollbar-width: none;
+            }
+            
+            body {
+                overflow-y: scroll;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Perfil (Carrega no topo imediatamente) -->
+    <!-- Perfil com Efeito de Disco Giratório -->
     <div class="profile-container id-header">
         <img 
             src="https://github.com/Dididoingles/estudecomigo/blob/main/shengnu.png?raw=true" 
@@ -288,7 +447,7 @@
 
     <script>
         // Lógica da Animação Typewriter
-        const text = "Aprenda com ciência de verdade";
+        const text = "Educação do futuro";
         const delay = 100;
         const element = document.getElementById("typewriter");
         let i = 0;
@@ -326,7 +485,6 @@
             });
 
             // 2. Configuração do Scroll Reveal (IntersectionObserver)
-            // Define que o gatilho dispara quando 15% da seção estiver visível na tela
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -338,11 +496,9 @@
                     if (entry.isIntersecting) {
                         const target = entry.target;
 
-                        // Se for uma seção de categoria, anima a seção e os cards internos
                         if (target.classList.contains('category-section')) {
                             const cards = target.querySelectorAll('.link-card');
                             
-                            // Linha do tempo local para esta seção específica
                             const sectionTl = anime.timeline({ easing: 'easeOutQuad' });
 
                             sectionTl
@@ -357,10 +513,9 @@
                                 opacity: [0, 1],
                                 scale: [0.9, 1],
                                 duration: 400,
-                                delay: anime.stagger(70) // Efeito cascata nos cards da seção
+                                delay: anime.stagger(70)
                             }, '-=350');
 
-                        // Se for o rodapé, faz a revelação dele
                         } else if (target.classList.contains('scroll-reveal-footer')) {
                             anime({
                                 targets: target,
@@ -371,18 +526,15 @@
                             });
                         }
 
-                        // Remove o observador do elemento para não repetir a animação ao subir a tela
                         observer.unobserve(target);
                     }
                 });
             }, observerOptions);
 
-            // Vincula o observador em todas as seções e no rodapé
             document.querySelectorAll('.category-section').forEach(section => {
                 sectionObserver.observe(section);
             });
             sectionObserver.observe(document.querySelector('.scroll-reveal-footer'));
-
 
             // 3. Microinterações de toque (Mobile Touch)
             const cards = document.querySelectorAll('.link-card');
