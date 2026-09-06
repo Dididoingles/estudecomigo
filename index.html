@@ -21,8 +21,6 @@
             --mars-glow-hover: rgba(194, 0, 0, 0.5);
         }
 
-     
-
         body {
             background: #0a0a0a;
             position: relative;
@@ -89,16 +87,14 @@
             pointer-events: none;
         }
 
-        /* Ajuste para tablets */
         @media (min-width: 768px) {
-        .profile-text-behind {
-        left: 52%;
-        width: 85%;
-        font-size: 0.9rem;
+            .profile-text-behind {
+                left: 52%;
+                width: 85%;
+                font-size: 0.9rem;
+            }
         }
-       }
 
-       
         .profile-text-behind .username-behind {
             font-size: 1.3rem;
             font-weight: 600;
@@ -116,15 +112,13 @@
             opacity: 0;
         }
 
-        
-
         /* ===== FOTO E DISCO (CAMADA SUPERIOR) - TAMANHO ORIGINAL ===== */
         .profile-container {
             width: 110px;
             height: 110px;
             position: absolute;
             top: 50%;
-            right: 0; /* Começa na DIREITA (quadrante 4) */
+            right: 0;
             transform: translate(0, -50%);
             z-index: 2;
             opacity: 0;
@@ -189,6 +183,41 @@
             opacity: 1;
         }
 
+        /* Intro Text */
+        .intro-section {
+            opacity: 0;
+            transform: translateY(20px);
+            max-width: 450px;
+            width: 100%;
+            margin-bottom: 32px;
+            padding: 0 5px;
+        }
+
+        .intro-text {
+            font-size: 0.8rem;
+            line-height: 1.7;
+            color: #ccc;
+            text-align: left;
+        }
+
+        .intro-text strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .intro-text .highlight {
+            color: var(--mars-rubi);
+            font-weight: 500;
+        }
+
+        .intro-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--mars-rubi);
+            margin: 15px 0 12px 0;
+            opacity: 0.6;
+        }
+
         /* Grid de Links */
         .links-grid {
             display: grid;
@@ -196,6 +225,63 @@
             gap: 12px;
             width: 100%;
             max-width: 450px;
+        }
+
+        /* Link horizontal (ocupando 2 colunas) */
+        .link-card-horizontal {
+            grid-column: 1 / -1;
+            opacity: 0;
+            transform: scale(0.9);
+            background: linear-gradient(145deg, #0f0f0f, #050505);
+            border: 1px solid var(--mars-border);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 15px;
+            text-decoration: none;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px var(--mars-glow);
+            will-change: opacity, transform, box-shadow;
+            -webkit-tap-highlight-color: transparent;
+            gap: 14px;
+            min-height: 70px;
+        }
+
+        @media (hover: hover) {
+            .link-card-horizontal:hover {
+                border-color: var(--mars-rubi);
+                background: #0f0f0f;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 20px var(--mars-glow-hover);
+            }
+        }
+
+        .link-card-horizontal i {
+            font-size: 1.5rem;
+            color: var(--mars-rubi);
+            flex-shrink: 0;
+        }
+
+        .link-card-horizontal .link-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .link-card-horizontal .link-content p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .link-card-horizontal .link-content span {
+            font-size: 0.65rem;
+            color: #888;
+            font-weight: 300;
+            line-height: 1.3;
         }
 
         .category-section {
@@ -247,6 +333,20 @@
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+
+        .section-description {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+            line-height: 1.6;
+        }
+
+        .section-description .highlight {
+            color: var(--mars-rubi);
+            font-weight: 500;
         }
 
         .scroll-reveal-footer {
@@ -336,6 +436,14 @@
             body {
                 overflow-y: scroll;
             }
+
+            .link-card-horizontal .link-content p {
+                font-size: 0.75rem;
+            }
+
+            .link-card-horizontal .link-content span {
+                font-size: 0.55rem;
+            }
         }
     </style>
 </head>
@@ -343,16 +451,14 @@
 
     <!-- CONTAINER DA ANIMAÇÃO DA FOTO -->
     <div class="profile-animation-container" id="profileAnimationContainer">
-        <!-- Texto que fica atrás (será revelado) -->
         <div class="profile-text-behind" id="profileTextBehind">
             <div class="username-behind" id="usernameBehind">@dicarvalho<span style="color:var(--mars-rubi)">.</span>prof</div>
             <div class="tagline-behind" id="taglineBehind">Educação do futuro</div>
         </div>
 
-        <!-- Foto com Disco Giratório -->
         <div class="profile-container" id="profileContainer">
             <img 
-                src="https://github.com/Dididoingles/estudecomigo/blob/main/shengnu.png?raw=true" 
+                src="https://github.com/Dididoingles/estudecomigo/blob/main/Profile.png?raw=true" 
                 alt="Diandra Carvalho" 
                 class="profile-pic" 
                 id="profileImg"
@@ -360,12 +466,29 @@
         </div>
     </div>
 
+    <!-- INTRODUÇÃO -->
+    <div class="intro-section" id="introSection">
+        <div class="intro-text">
+            <p>
+                <i class="fas fa-user-astronaut" style="color:var(--mars-rubi); margin-right: 6px;"></i>
+                <strong>Oi! Eu sou a Diandra</strong>, mas pode me chamar de <strong>Di</strong>.
+            </p>
+            <p style="margin-top: 6px;">
+                Eu sou <span class="highlight">profe. de Inglês</span>, <span class="highlight">Poliglota</span> e trabalho com aulas particulares <span style="color:#888; font-size:0.75rem;">(1 aluno, 1 professor)</span>
+            </p>
+            <p style="margin-top: 10px;">
+                Se você quiser conhecer meu método tenho <strong>2 caminhos</strong> para você:
+            </p>
+           
+            <div class="intro-section mb-8" id="introSection">
+           
+    </div>
+
     <!-- Container Geral de Seções -->
     <div class="w-full max-width-[450px]" style="max-width: 450px;">
         
         <!-- CATEGORIA: CONTATO -->
         <div class="mb-8 category-section">
-            <h2 class="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-4 text-center">Contato</h2>
             <div class="links-grid">
                 <a href="https://wa.me/5516993272278" class="link-card">
                     <i class="fab fa-whatsapp"></i>
@@ -382,9 +505,12 @@
 
         <!-- CATEGORIA: RECURSOS GRATUITOS -->
         <div class="mb-8 category-section">
-            <h2 class="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-4 text-center">Recursos Gratuitos</h2>
+            <p class="section-description">
+                <i class="fas fa-gift" style="color:var(--mars-rubi); margin-right: 6px;"></i>
+                Eu criei tudo isso aqui para te ajudar a aprender <span class="highlight">GRATUITAMENTE</span>
+            </p>
             <div class="links-grid">
-                <a href="https://dididoingles.github.io/praticar/" class="link-card">
+                <a href="https://dididoingles.github.io/Pratica/" class="link-card">
                     <i class="fas fa-chess-knight"></i>
                     <p class="text-[13px] font-semibold leading-snug">Ferramentas gratuitas</p>
                     <span class="text-gray-400 mt-1 block font-light">Aprenda de graça e sem anúncios</span>
@@ -407,9 +533,29 @@
             </div>
         </div>
 
+        <!-- CATEGORIA: SIMULADOR DE MENSALIDADE -->
+        <div class="mb-8 category-section">
+            <p class="section-description">
+                <i class="fas fa-calculator" style="color:var(--mars-rubi); margin-right: 6px;"></i>
+                Descubra o valor ideal para começar sua jornada no inglês
+            </p>
+            <div class="links-grid">
+                <a href="https://dididoingles.github.io/calculadora/" class="link-card-horizontal">
+                    <i class="fas fa-calculator"></i>
+                    <div class="link-content">
+                        <p class="text-[13px] font-semibold leading-snug">Simulador de Mensalidade</p>
+                        <span class="text-gray-400 mt-1 block font-light">Calcule o valor do seu plano personalizado</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
         <!-- CATEGORIA: SOU ALUNO -->
         <div class="mb-6 category-section">
-            <h2 class="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-4 text-center">Sou Aluno</h2>
+            <p class="section-description">
+                <i class="fas fa-user-graduate" style="color:var(--mars-rubi); margin-right: 6px;"></i>
+                Acesse sua área exclusiva com materiais e laboratório de prática
+            </p>
             <div class="links-grid">
                 <a href="https://sites.google.com/view/profdiandradeingles/language-lab" class="link-card">
                     <i class="fas fa-flask"></i>
@@ -449,7 +595,6 @@
             const containerWidth = container.offsetWidth || 450;
             const photoWidth = 110;
             
-            // Posições: DIREITA (quadrante 4) → ESQUERDA (quadrante 1)
             const startRight = 0;
             const endRight = containerWidth - photoWidth - 10;
     
@@ -457,9 +602,6 @@
                 easing: 'easeOutQuad',
             });
     
-            // ==========================================
-            // FASE 1: DISCO APARECE (sem foto)
-            // ==========================================
             mainTimeline
             .add({
                 targets: container,
@@ -479,31 +621,21 @@
                 duration: 1500,
                 easing: 'easeInOutQuad'
             })
-            
-            // ==========================================
-            // FASE 2: FOTO APARECE (quando carregar)
-            // ==========================================
             .add({
                 targets: '.profile-pic',
                 opacity: [0, 1],
                 duration: 500,
                 easing: 'easeOutQuad',
                 begin: function() {
-                    // Verifica se a foto já carregou
                     if (img.complete) {
                         img.classList.add('loaded');
                     } else {
-                        // Aguarda o carregamento
                         img.onload = function() {
                             img.classList.add('loaded');
                         };
                     }
                 }
-            }, '-=1500')  // Começa 800ms antes do fim do movimento
-            
-            // ==========================================
-            // FASE 3: TEXTO ATRÁS APARECE
-            // ==========================================
+            }, '-=1500')
             .add({
                 targets: [usernameBehind, taglineBehind],
                 opacity: [0, 1],
@@ -518,7 +650,6 @@
                 easing: 'easeOutQuad'
             }, '-=300');
     
-            // Efeito de glow no texto
             setTimeout(() => {
                 anime({
                     targets: '.username-behind span',
@@ -547,7 +678,7 @@
                         const target = entry.target;
     
                         if (target.classList.contains('category-section')) {
-                            const cards = target.querySelectorAll('.link-card');
+                            const cards = target.querySelectorAll('.link-card, .link-card-horizontal');
                             
                             const sectionTl = anime.timeline({ easing: 'easeOutQuad' });
     
@@ -574,6 +705,14 @@
                                 duration: 500,
                                 easing: 'easeOutQuad'
                             });
+                        } else if (target.classList.contains('intro-section')) {
+                            anime({
+                                targets: target,
+                                opacity: [0, 1],
+                                translateY: [20, 0],
+                                duration: 500,
+                                easing: 'easeOutQuad'
+                            });
                         }
     
                         observer.unobserve(target);
@@ -585,8 +724,9 @@
                 sectionObserver.observe(section);
             });
             sectionObserver.observe(document.querySelector('.scroll-reveal-footer'));
+            sectionObserver.observe(document.querySelector('.intro-section'));
     
-            const cards = document.querySelectorAll('.link-card');
+            const cards = document.querySelectorAll('.link-card, .link-card-horizontal');
             cards.forEach(card => {
                 card.addEventListener('touchstart', () => {
                     anime({
