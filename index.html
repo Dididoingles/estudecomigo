@@ -25,6 +25,14 @@
             background: #0a0a0a;
             position: relative;
             overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--mars-bg);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 15px;
         }
 
         body::before {
@@ -49,18 +57,6 @@
                     rgba(194, 0, 0, 0.116) 30px
                 );
             background-size: 30px 30px;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--mars-bg);
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 15px;
-            overflow-x: hidden;
         }
 
         /* ===== CONTAINER PRINCIPAL DA ANIMAÇÃO ===== */
@@ -112,7 +108,7 @@
             opacity: 0;
         }
 
-        /* ===== FOTO E DISCO (CAMADA SUPERIOR) - TAMANHO ORIGINAL ===== */
+        /* ===== FOTO E DISCO (CAMADA SUPERIOR) ===== */
         .profile-container {
             width: 110px;
             height: 110px;
@@ -122,6 +118,25 @@
             transform: translate(0, -50%);
             z-index: 2;
             opacity: 0;
+        }
+
+        /* GLOW CIRCULANTE ATRÁS DE TODO O DISCO */
+        .profile-glow-ring {
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                var(--mars-rubi) 0%,
+                rgba(194, 0, 0, 0.9) 25%,
+                transparent 50%,
+                var(--mars-rubi) 100%
+            );
+            filter: blur(6px);
+            opacity: 0.95;
+            animation: spin 3s linear infinite;
+            z-index: -3;
+            pointer-events: none;
         }
 
         .profile-container::before {
@@ -208,14 +223,6 @@
         .intro-text .highlight {
             color: var(--mars-rubi);
             font-weight: 500;
-        }
-
-        .intro-divider {
-            width: 40px;
-            height: 2px;
-            background: var(--mars-rubi);
-            margin: 15px 0 12px 0;
-            opacity: 0.6;
         }
 
         /* Grid de Links */
@@ -326,7 +333,7 @@
         }
 
         .link-card span {
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             line-height: 1.2;
             font-weight: 400;
             display: -webkit-box;
@@ -457,6 +464,7 @@
         </div>
 
         <div class="profile-container" id="profileContainer">
+            <div class="profile-glow-ring"></div>
             <img 
                 src="https://github.com/Dididoingles/estudecomigo/blob/main/Profile.png?raw=true" 
                 alt="Diandra Carvalho" 
@@ -474,14 +482,12 @@
                 <strong>Oi! Eu sou a Diandra</strong>, mas pode me chamar de <strong>Di</strong>.
             </p>
             <p style="margin-top: 6px;">
-                Eu sou <span class="highlight">profe. de Inglês</span>, <span class="highlight">Poliglota</span> , <span class="highlight">Especialista em neuroeducação</span> e trabalho com aulas particulares <span style="color:#888; font-size:0.75rem;">(Somente um (1) aluno por professor)</span>
+                Eu sou <span class="highlight">profe. de Inglês</span>, <span class="highlight">Poliglota</span>, <span class="highlight">Especialista em neurolinguística</span>, e eu trabalho com aulas particulares <span style="color:#888; font-size:0.75rem;">(Somente um (1) aluno por professor)</span>
             </p>
             <p style="margin-top: 10px;">
-                Clicando nesses ícones você tira suas dúvidas, solicita um orçamento, ou agenda uma avaliação gratuita;
+                Clicando nesses ícones você tira suas dúvidas, solicita um orçamento, ou agenda uma avaliação gratuita!
             </p>
-           
-            <div class="intro-section mb-8" id="introSection">
-           
+        </div>
     </div>
 
     <!-- Container Geral de Seções -->
@@ -493,12 +499,12 @@
                 <a href="https://wa.me/5516993272278" class="link-card">
                     <i class="fab fa-whatsapp"></i>
                     <p class="text-[13px] font-semibold leading-snug">Falar com a Di</p>
-                    <span class="text-gray-400 mt-1 block font-light">Tire suas dúvidas no WhatsApp</span>
+                    <span class="text-gray-400 mt-1 block font-light">No WhatsApp</span>
                 </a>
                 <a href="https://dididoingles.github.io/method/" class="link-card">
                     <i class="fas fa-dna"></i>
                     <p class="text-[13px] font-semibold leading-snug">Conhecer método</p>
-                    <span class="text-gray-400 mt-1 block font-light">Como funciona nossa metodologia</span>
+                    <span class="text-gray-400 mt-1 block font-light">Site oficial</span>
                 </a>
             </div>
         </div>
@@ -510,25 +516,25 @@
                 Eu criei tudo isso aqui para te ajudar a aprender <span class="highlight">GRATUITAMENTE</span>
             </p>
             <div class="links-grid">
-                <a href="https://dididoingles.github.io/Pratica/" class="link-card">
+                <a href="https://dididoingles.github.io/praticar/" class="link-card">
                     <i class="fas fa-chess-knight"></i>
-                    <p class="text-[13px] font-semibold leading-snug">Ferramentas gratuitas</p>
+                    <p class="text-[13px] font-semibold leading-snug">Recursos gratuitos</p>
                     <span class="text-gray-400 mt-1 block font-light">Aprenda de graça e sem anúncios</span>
                 </a>
                 <a href="https://dididoingles.github.io/discoveryourprofile/" class="link-card">
                     <i class="fa-solid fa-brain"></i>
-                    <p class="text-[13px] font-semibold leading-snug">Teste de Perfil de Aprendizagem</p>
-                    <span class="text-gray-400 mt-1 block font-light">Descubra como você aprende</span>
+                    <p class="text-[13px] font-semibold leading-snug">Perfil de Aprendizagem</p>
+                    <span class="text-gray-400 mt-1 block font-light">Faça o teste e descubra como você aprende</span>
                 </a>
                 <a href="https://dididoingles.github.io/testyourenglish/" class="link-card">
                     <i class="fa-solid fa-lightbulb"></i>
                     <p class="text-[13px] font-semibold leading-snug">Teste de Nível</p>
-                    <span class="text-gray-400 mt-1 block font-light">Avalie seu conhecimento atual</span>
+                    <span class="text-gray-400 mt-1 block font-light">Avalie seu conhecimento atual com 95% de precisão</span>
                 </a>
                 <a href="https://dididoingles.github.io/library/" class="link-card">
                     <i class="fas fa-book-open"></i>
                     <p class="text-[13px] font-semibold leading-snug">Biblioteca</p>
-                    <span class="text-gray-400 mt-1 block font-light">Materiais e livros digitais</span>
+                    <span class="text-gray-400 mt-1 block font-light">Baixe materiais e livros digitais gratuitamente</span>
                 </a>
             </div>
         </div>
@@ -560,12 +566,12 @@
                 <a href="https://sites.google.com/view/profdiandradeingles/language-lab" class="link-card">
                     <i class="fas fa-flask"></i>
                     <p class="text-[13px] font-semibold leading-snug">Language Lab</p>
-                    <span class="text-gray-400 mt-1 block font-light">Laboratório de prática</span>
+                    <span class="text-gray-400 mt-1 block font-light">Laboratório fechado exclusivo para alunos</span>
                 </a>
                 <a href="https://sites.google.com/view/profdiandradeingles/sou-aluno" class="link-card">
                     <i class="fas fa-user-graduate"></i>
                     <p class="text-[13px] font-semibold leading-snug">Área do Aluno</p>
-                    <span class="text-gray-400 mt-1 block font-light">Acesse seu portal</span>
+                    <span class="text-gray-400 mt-1 block font-light">Onde consultar aulas, planos de estudo, cancelamentos... </span>
                 </a>
             </div>
         </div>
